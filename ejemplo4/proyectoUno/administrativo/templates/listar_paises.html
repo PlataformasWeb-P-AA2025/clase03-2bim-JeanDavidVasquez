@@ -1,0 +1,16 @@
+<h2>Listado de Paises</h2>
+<h3>Número de paises {{ numero_paises }}</h3>
+
+{% for p in paises %}
+    
+  {{p}}<br/>
+  <ul>
+  {% for provincia in p.provincia_set.all %}
+      <li>
+          Provincia {{provincia}}<br/>
+      </li>
+  {% endfor %}
+  </ul>
+  <br/>
+{% endfor %}
+[<a href="{% url 'crear_paises' %}">agregar pais</a>]

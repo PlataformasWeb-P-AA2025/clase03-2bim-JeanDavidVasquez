@@ -28,6 +28,38 @@ def index(request):
     return render(request, 'index.html', informacion_template)
 
 
+def listar_paises(request):
+    """
+        Listar los registros del modelo Pais,
+        obtenidos de la base de datos.
+    """
+    # a través del ORM de django se obtiene
+    # los registros de la entidad; el listado obtenido
+    # se lo almacena en una variable llamada
+    # paises
+    paises = Pais.objects.all()
+    # en la variable tipo diccionario llamada informacion_template
+    # se agregará la información que estará disponible
+    # en el template
+    informacion_template = {'paises': paises, 'numero_paises': len(paises)}
+    return render(request, 'listar_paises.html', informacion_template)
+
+def crear_paises (request):
+    paises = Pais.objects.all()
+    if request.method == 'POST':
+        formulario = PaisForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('listar_paises')  # Usa el nombre de tu URL
+    else:
+        formulario = PaisForm()
+    informacion_template = {
+        'paises': paises,
+        'numero_paises': len(paises),
+        'formulario': formulario
+    }
+    return render(request, 'crear_paises.html', informacion_template)
+
 def obtener_estudiante(request, id):
     """
         Listar los registros del modelo Estudiante,
