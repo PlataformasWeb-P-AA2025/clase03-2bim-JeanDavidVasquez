@@ -22,7 +22,7 @@ def listadoEstudiantes(request):
     # se lo almacena en una variable llamada
     # estudiantes
     estudiantes = Estudiante.objects.all()
-    # en la variable tipo diccionario llamada informacion_template
+    # en la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 variable tipo diccionario llamada informacion_template
     # se agregará la información que estará disponible
     # en el template
     titulo = "Listado de estudiantes de mi aplicación"
